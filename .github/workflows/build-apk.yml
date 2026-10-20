@@ -24,10 +24,11 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install dependencies
+    - name: Install dependencies & Add Android platform
       run: |
         npm install
-        npx cap init --force || true
+        npx cap add android || true
+        npx cap sync android
 
     - name: Build Android App
       run: |
