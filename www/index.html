@@ -189,7 +189,6 @@ body{background:var(--bg)}
 <div class="shell" id="shell"><nav class="nav" id="nav"></nav><main id="main"></main></div>
 <footer class="ft"><div id="ftl"></div><p id="ftt"></p></footer></div><div id="toast" role="status" aria-live="polite"></div><div class="hi"></div></div></div>
 
-<script src="fb.js"></script>
 <script>
 /* Liens officiels : à vérifier avant mise en ligne */
 const LINKS=[
@@ -205,7 +204,6 @@ const LOGO='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFB
 
 /* ---------- Traductions [FR, EN, AR] ---------- */
 const T={
-fe0:['Action impossible pour le moment. Réessayez.','Action not possible right now. Try again.','تعذّر تنفيذ العملية الآن. أعد المحاولة.'],fe1:['E-mail ou mot de passe incorrect.','Incorrect email or password.','البريد أو كلمة المرور غير صحيحة.'],fe2:['Cet e-mail est déjà utilisé.','This email is already in use.','هذا البريد مستعمل من قبل.'],fe3:['Connexion internet requise pour cette étape.','Internet connection required for this step.','هذه الخطوة تتطلب اتصالاً بالإنترنت.'],fe4:['Seules les images et les messages vocaux courts sont partagés.','Only images and short voice messages can be shared.','يمكن مشاركة الصور والرسائل الصوتية القصيرة فقط.'],off:['Hors ligne : vos actions seront envoyées au retour du réseau.','Offline: your actions will sync when you are back online.','بدون إنترنت: ستُرسل إجراءاتك عند عودة الاتصال.'],on:['De retour en ligne.','Back online.','عاد الاتصال.'],
 pf:['Mon profil','My profile','ملفي الشخصي'],pf_i:['Informations personnelles','Personal information','المعلومات الشخصية'],pf_ph:['Téléphone','Phone','الهاتف'],pf_ct:['Ville','City','المدينة'],pf_tr:['Filière / Service','Track / Office','الشعبة / المصلحة'],pf_bio:['À propos de moi','About me','نبذة عني'],pf_av:['Changer la photo','Change photo','تغيير الصورة'],pf_rm:['Retirer','Remove','إزالة'],pf_sv:['Enregistrer les modifications','Save changes','حفظ التعديلات'],pf_ok:['Profil mis à jour','Profile updated','تم تحديث الملف الشخصي'],pf_bad:['Nom requis et e-mail valide.','Name and a valid email are required.','الاسم مطلوب وبريد صالح.'],pf_th:['Personnaliser l’app','Customize the app','تخصيص التطبيق'],pf_md:['Mode','Mode','المظهر'],md_l:['Clair','Light','فاتح'],md_d:['Sombre','Dark','داكن'],md_a:['Auto','Auto','تلقائي'],pf_ac:['Couleur d’accent','Accent color','لون التمييز'],pf_tz:['Taille du texte','Text size','حجم النص'],z0:['Petit','Small','صغير'],z1:['Normal','Normal','عادي'],z2:['Grand','Large','كبير'],pf_rd:['Forme des coins','Corner style','شكل الزوايا'],r0:['Droits','Sharp','حادة'],r1:['Arrondis','Rounded','مستديرة'],r2:['Très ronds','Pill','دائرية'],pf_rs:['Réinitialiser le thème','Reset theme','إعادة الضبط'],
 sub:['Cité des Métiers et des Compétences · Tamesna','City of Trades and Skills · Tamesna','مدينة المهن والكفاءات · تمسنا'],
 th:['Changer de thème','Toggle theme','تبديل المظهر'],lo:['Se déconnecter','Log out','تسجيل الخروج'],
@@ -242,10 +240,18 @@ const SVC=[['Administration','Administration','الإدارة'],['Scolarité','R
 const SLOTS=['09:00','10:30','13:30','15:00'];
 const EMO=['😀','😂','😍','👍','🙏','🎉','🔥','✅','📚','💡','🤝','👏','😅','🤔','❤️','🚀'];
 const JOBS=[{co:'Atlas Digital',c:'Rabat',m:2,h:['Stage développeur web junior','Junior web developer internship','تدريب مطوّر ويب مبتدئ']},{co:'NovaTech',c:'Salé',m:3,h:['Stage support IT et réseaux','IT support & networks internship','تدريب دعم تقني وشبكات']},{co:'Hôtel Les Jardins',c:'Rabat',m:2,h:['Stage réception et accueil','Front desk internship','تدريب استقبال']}];
-const GN=[['DEV101 · Développement digital','DEV101 · Digital development','DEV101 · التطوير الرقمي'],['ID102 · Industrie 4.0','ID102 · Industry 4.0','ID102 · الصناعة 4.0'],['TH201 · Tourisme et hôtellerie','TH201 · Tourism & hospitality','TH201 · السياحة والفندقة']];
 const S={th:{ac:'#0369A1',z:1,r:1},lang:'fr',theme:'',user:null,mode:'login',role:'s',view:'dash',g:0,emo:false,rec:false,f:{},err:false,
- anns:[],groups:GN.map(n=>({n,msgs:[]})),clubs:[],meets:[],docs:[],applied:{},offered:{},gigs:[],appts:[]};
-try{const s=JSON.parse(localStorage.getItem('cmc-connect-app')||'{}');if(s.lang)S.lang=s.lang;if(s.theme)S.theme=s.theme;if(s.user&&s.user.uid)S.user=s.user;if(s.th)Object.assign(S.th,s.th)}catch(e){}
+ anns:[{k:1,d:['Aujourd’hui · 08:10','Today · 08:10','اليوم · 08:10'],h:['Emploi du temps : le TP de jeudi passe en salle B204','Schedule: Thursday’s lab moves to room B204','الجدول: حصة الخميس التطبيقية في القاعة B204'],b:['Le TP de développement web de 10h est déplacé en salle B204 (bloc B).','The 10:00 web development lab moves to room B204 (block B).','حصة تطوير الويب على الساعة 10:00 منقولة إلى القاعة B204 (البناية B).']},
+  {k:0,d:['Hier · 16:40','Yesterday · 16:40','أمس · 16:40'],h:['Inscriptions aux examens de rattrapage jusqu’au 30 octobre','Re-sit exam registration open until October 30','التسجيل في امتحانات الاستدراك إلى غاية 30 أكتوبر'],b:['Déposez votre demande au service scolarité avec votre carte de stagiaire.','Submit your request to the registrar with your trainee card.','قدّم طلبك لمصلحة الشؤون الدراسية مرفقًا ببطاقة المتدرب.']}],
+ groups:[
+ {n:['DEV101 · Développement digital','DEV101 · Digital development','DEV101 · التطوير الرقمي'],msgs:[{u:'M. Alaoui',r:'t',tm:'08:02',t:['Bonjour à tous, le support du TP est dans les documents.','Hello all, the lab handout is in the documents.','مرحبًا بالجميع، مرجع الحصة التطبيقية ضمن الوثائق.']},{u:'Salma B.',r:'s',tm:'08:15',t:['Merci Monsieur, on est bien en B204 ?','Thanks, are we in B204?','شكرًا أستاذ، هل سنكون في B204؟']}]},
+ {n:['ID102 · Industrie 4.0','ID102 · Industry 4.0','ID102 · الصناعة 4.0'],msgs:[{u:'M. Alaoui',r:'t',tm:'Hier',t:['Visite de l’atelier mécatronique vendredi à 9h.','Mechatronics workshop visit on Friday at 9am.','زيارة ورشة الميكاترونيك يوم الجمعة على الساعة 9.']}]},
+ {n:['TH201 · Tourisme et hôtellerie','TH201 · Tourism & hospitality','TH201 · السياحة والفندقة'],msgs:[{u:'Imane K.',r:'s',tm:'Hier',t:['Quelqu’un a les notes du cours d’accueil ?','Anyone have the front-desk course notes?','هل لدى أحد ملاحظات درس الاستقبال؟']}]}],
+ clubs:[{n:'New Tech & IA',d:['Ateliers IA, code et projets innovants.','AI workshops, code and innovative projects.','ورشات ذكاء اصطناعي وبرمجة ومشاريع مبتكرة.'],ty:'c',ow:'Salma B.',mem:['Salma B.','Yassine E.']},{n:'Sport',d:['Football, running et tournois inter-filières.','Football, running and cross-track tournaments.','كرة القدم والجري وبطولات بين الشعب.'],ty:'c',ow:'Hamza R.',mem:['Hamza R.']},{n:'Arts',d:['Théâtre, musique et expositions.','Theatre, music and exhibitions.','مسرح وموسيقى ومعارض.'],ty:'c',ow:'M. Alaoui',mem:['M. Alaoui','Imane K.']}],
+ meets:[{t:'Cours en direct : Bases de données',d:'2026-10-22',h:'10:00'}],docs:[{n:'support-tp-web.pdf',sz:420000}],
+ applied:{},offered:{},gigs:[{h:['Logo et charte pour une association','Logo and brand kit for a nonprofit','شعار وهوية لجمعية'],u:'Salma B.',p:300},{h:['Dépannage PC portable','Laptop repair','إصلاح حاسوب محمول'],u:'Hamza R.',p:120}],
+ appts:[{u:'Yassine E.',v:1,d:'2026-10-23',s:'10:30',w:'Attestation de scolarité',st:'p'},{u:'M. Alaoui',v:3,d:'2026-10-24',s:'13:30',w:'Salle pour le club Arts',st:'p'}]};
+try{const s=JSON.parse(localStorage.getItem('cmc-connect-app')||'{}');if(s.lang)S.lang=s.lang;if(s.theme)S.theme=s.theme;if(s.user)S.user=s.user;if(s.th)Object.assign(S.th,s.th)}catch(e){}
 if(!S.theme)S.theme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
 const save=()=>{try{localStorage.setItem('cmc-connect-app',JSON.stringify({lang:S.lang,theme:S.theme,user:S.user,th:S.th}))}catch(e){}};
 const L=()=>({fr:0,en:1,ar:2})[S.lang],p=a=>a[L()],t=k=>T[k][L()];
@@ -272,7 +278,7 @@ const RAD=[['4px','3px'],['14px','10px'],['22px','16px']],ZM=[.92,1,1.1],DTH={ac
 function applyTheme(){const c=S.th.ac;let e=document.getElementById('pst');if(!e){e=document.createElement('style');e.id='pst';document.head.appendChild(e)}
  e.textContent=`:root{--ac:${c};--on:${lum(c)>.4?'#0F172A':'#fff'};--soft:color-mix(in srgb,${c} 14%,#fff);--r:${RAD[S.th.r][0]};--rs:${RAD[S.th.r][1]};--z:${ZM[S.th.z]}}:root[data-theme=dark]{--ac:color-mix(in srgb,${c} 60%,#fff);--on:#0F172A;--soft:color-mix(in srgb,${c} 28%,#0F172A)}`}
 const avatar=u=>u.av?`<img src="${u.av}" alt="">`:`<span>${esc((u.name||'?').trim().slice(0,1).toUpperCase())}</span>`;
-function resizeAv(f){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const s=256,c=document.createElement('canvas');c.width=c.height=s;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,s,s);FB.profile({av:c.toDataURL('image/jpeg',.7)}).catch(fe);toast(t('pf_ok'))};im.src=r.result};r.readAsDataURL(f)}
+function resizeAv(f){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const s=256,c=document.createElement('canvas');c.width=c.height=s;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,s,s);S.user.av=c.toDataURL('image/jpeg',.82);save();toast(t('pf_ok'));render()};im.src=r.result};r.readAsDataURL(f)}
 /* ---------- Vues ---------- */
 const V={
 pf(){const u=S.user,sw=['#0369A1','#6D28D9','#BE185D','#C2410C','#047857','#0F766E','#B91C1C','#334155'],cur=S.th.ac.toLowerCase();
@@ -288,8 +294,9 @@ auth(){
   const up=S.mode==='up';
   return `<div class="card" style="margin-top:12px"><img class="logo" src="${LOGO}" alt="CMC Connect"><h1>${t('a_t')}</h1><p class="lead">${t('a_s')}</p>
   <div class="chips row" style="margin-bottom:14px"><button class="btn ${up?'g':''}" data-a="mode" data-v="in">${t('a_in')}</button><button class="btn ${up?'':'g'}" data-a="mode" data-v="up">${t('a_up')}</button></div>
+  <h2>${t('a_role')}</h2><div class="roles" style="margin-bottom:14px">${['s','t','a'].map(r=>`<button class="${S.role===r?'on':''}" data-a="role" data-v="${r}" aria-pressed="${S.role===r}">${ic(r==='s'?'users':r==='t'?'case':'bell')}<span><b>${roleName(r)}</b><small>${t('rd_'+r)}</small></span></button>`).join('')}</div>
   <div class="stack">${up?inp('nm',t('a_nm')):''}${inp('em',t('a_em'),'email')}${inp('pw',t('a_pw'),'password')}
-  ${S.err?`<p class="err" role="alert">${S.errm||t('a_e')}</p>`:''}<button class="btn" data-a="auth">${up?t('a_go2'):t('a_go1')}</button></div></div>`;
+  ${S.err?`<p class="err" role="alert">${t('a_e')}</p>`:''}<button class="btn" data-a="auth">${up?t('a_go2'):t('a_go1')}</button><p class="meta">${t('a_h')}</p></div><h2 style="margin:18px 0 8px">${t('demo')}</h2><div class="row">${['s','t','a'].map(r=>`<button class="btn g" data-a="demo" data-v="${r}">${roleName(r)}</button>`).join('')}</div></div>`;
 },
 dash(){
   const r=rl();let b=`<h1>${t('hi')}, ${esc(nm())}</h1><p class="lead"><span class="tag">${roleName(r)}</span></p><div class="row" style="margin-bottom:14px"><span class="meta">${t('sw')}</span>${['s','t','a'].map(x=>`<button class="btn s ${x===r?'':'g'}" data-a="demo" data-v="${x}">${roleName(x)}</button>`).join('')}</div>`+prioBanner();
@@ -375,7 +382,7 @@ function render(){
   const c=$('#chat');if(c)c.scrollTop=c.scrollHeight;
 }
 let tm;function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(tm);tm=setTimeout(()=>e.classList.remove('show'),2600)}
-const post=m=>FB.add('msgs',Object.assign({g:S.g,u:nm(),r:rl(),tm:now()},m)).catch(fe);
+const post=m=>S.groups[S.g].msgs.push(Object.assign({u:nm(),r:rl(),tm:now()},m));
 
 /* ---------- Enregistrement vocal ---------- */
 let rec,chunks=[];
@@ -383,7 +390,7 @@ async function toggleRec(){
   if(S.rec){rec.stop();return}
   try{const st=await navigator.mediaDevices.getUserMedia({audio:true});rec=new MediaRecorder(st);chunks=[];
     rec.ondataavailable=e=>chunks.push(e.data);
-    rec.onstop=()=>{st.getTracks().forEach(x=>x.stop());S.rec=false;const bl=new Blob(chunks,{type:rec.mimeType});if(bl.size>6e5)toast(t('fe4'));else{const fr=new FileReader();fr.onload=()=>post({k:'aud',src:fr.result});fr.readAsDataURL(bl)}render()};
+    rec.onstop=()=>{st.getTracks().forEach(x=>x.stop());S.rec=false;post({k:'aud',src:URL.createObjectURL(new Blob(chunks,{type:rec.mimeType}))});render()};
     rec.start();S.rec=true;render()}catch(e){toast(t('nomic'))}
 }
 
@@ -409,50 +416,39 @@ async function startCall(title){
 const A={
 view:v=>{S.view=v;$('#scr').scrollTo({top:0})},
 openpf:()=>{const u=S.user;Object.assign(S.f,{p_nm:u.name,p_em:u.email||'',p_ph:u.phone||'',p_ct:u.city||'',p_tr:u.track||'',p_bio:u.bio||''});S.err=false;S.view='pf';$('#scr').scrollTo({top:0})},
-savepf:()=>{const n=(S.f.p_nm||'').trim(),e=(S.f.p_em||'').trim();if(!n||!/^\S+@\S+\.\S+$/.test(e)){S.err=true;return}S.err=false;FB.profile({name:n,email:e,phone:(S.f.p_ph||'').trim(),city:(S.f.p_ct||'').trim(),track:(S.f.p_tr||'').trim(),bio:(S.f.p_bio||'').trim()}).catch(fe);toast(t('pf_ok'))},
-rmav:()=>{FB.profile({av:''}).catch(fe)},setmode:v=>{S.theme=v;save()},setac:v=>{S.th.ac=v;save()},setz:v=>{S.th.z=+v;save()},setr:v=>{S.th.r=+v;save()},rsth:()=>{S.th=Object.assign({},DTH);save()},
+savepf:()=>{const n=(S.f.p_nm||'').trim(),e=(S.f.p_em||'').trim();if(!n||!/^\S+@\S+\.\S+$/.test(e)){S.err=true;return}S.err=false;const o=nm();
+ if(o!==n){S.clubs.forEach(c=>{c.mem=c.mem.map(x=>x===o?n:x);if(c.ow===o)c.ow=n});S.groups.forEach(g=>g.msgs.forEach(m=>{if(m.u===o)m.u=n}));S.gigs.forEach(g=>{if(g.u===o)g.u=n});S.appts.forEach(a=>{if(a.u===o)a.u=n})}
+ Object.assign(S.user,{name:n,email:e,phone:(S.f.p_ph||'').trim(),city:(S.f.p_ct||'').trim(),track:(S.f.p_tr||'').trim(),bio:(S.f.p_bio||'').trim()});save();toast(t('pf_ok'))},
+rmav:()=>{delete S.user.av;save()},setmode:v=>{S.theme=v;save()},setac:v=>{S.th.ac=v;save()},setz:v=>{S.th.z=+v;save()},setr:v=>{S.th.r=+v;save()},rsth:()=>{S.th=Object.assign({},DTH);save()},
 grp:v=>{S.g=+v;S.view='forum'},theme:()=>{S.theme=S.theme==='dark'?'light':'dark';save()},
 mode:v=>{S.mode=v;S.err=false},role:v=>S.role=v,
-auth:()=>{const em=(S.f.em||'').trim(),pw=S.f.pw||'',up=S.mode==='up',n=(S.f.nm||'').trim();if(!/^\S+@\S+\.\S+$/.test(em)||pw.length<6||(up&&!n)){S.err=true;S.errm='';return}S.err=false;
-  FB.sign(up,em,pw,n).catch(e=>{const c=e.code||'';S.err=true;S.errm=t(c.includes('network')?'fe3':c.includes('already')?'fe2':c.includes('weak')?'a_e':'fe1');render()})},
-logout:()=>{FB.out();S.rec=false},
+auth:()=>{const em=(S.f.em||'').trim(),pw=S.f.pw||'';if(!/^\S+@\S+\.\S+$/.test(em)||pw.length<6){S.err=true;return}
+  S.err=false;S.user={role:S.role,email:em,name:(S.mode==='up'&&(S.f.nm||'').trim())||NM[S.role]};S.view='dash';S.f={};save()},
+demo:v=>{S.user={role:v,name:NM[v]};S.view='dash';S.f={};S.rec=false;save()},
+logout:()=>{S.user=null;S.f={};S.rec=false;save()},
 emot:()=>S.emo=!S.emo,emo:v=>{S.f.msg=(S.f.msg||'')+v},mic:()=>{toggleRec()},call:()=>startCall(p(S.groups[S.g].n)),
 send:()=>{const m=(S.f.msg||'').trim();if(!m)return;post({t:m});S.f.msg='';S.emo=false},
-delmsg:(v,el)=>{FB.del('msgs',S.groups[+v].msgs[+el.dataset.w].id).catch(fe)},
-pub:()=>{const h=(S.f.at||'').trim(),b=(S.f.ab||'').trim();if(!h||!b){toast(t('fill'));return}FB.add('anns',{k:S.f.ap?1:0,d:new Date().toLocaleDateString()+' · '+now(),h,b}).catch(fe);S.f.at=S.f.ab='';S.f.ap=false;toast(t('ok2'))},
-delann:v=>{FB.del('anns',S.anns[+v].id).catch(fe)},
+delmsg:(v,el)=>{S.groups[+v].msgs.splice(+el.dataset.w,1)},
+pub:()=>{const h=(S.f.at||'').trim(),b=(S.f.ab||'').trim();if(!h||!b){toast(t('fill'));return}S.anns.unshift({k:S.f.ap?1:0,d:[now(),now(),now()],h:[h,h,h],b:[b,b,b]});S.f.at=S.f.ab='';S.f.ap=false;toast(t('ok2'))},
+delann:v=>S.anns.splice(+v,1),
 joinm:v=>startCall(S.meets[+v].t),
-meet:()=>{if(!(S.f.mt||'').trim()||!S.f.md||!S.f.mh){toast(t('fill'));return}FB.add('meets',{t:S.f.mt.trim(),d:S.f.md,h:S.f.mh}).catch(fe);S.f.mt=S.f.md=S.f.mh='';toast(t('ok2'))},
-mkclub:()=>{const n=(S.f.cn||'').trim();if(!n){toast(t('fill'));return}FB.add('clubs',{n,d:(S.f.cd||'').trim()||n,ty:S.f.ct||'c',ow:nm(),owU:ME(),memU:[ME()]}).catch(fe);S.f.cn=S.f.cd='';toast(t('ok2'))},
-joinclub:v=>{const c=S.clubs[+v];FB.arr('clubs',c.id,'memU',ME(),!c.mem.includes(nm())).catch(fe)},delclub:v=>{FB.del('clubs',S.clubs[+v].id).catch(fe)},
+meet:()=>{if(!(S.f.mt||'').trim()||!S.f.md||!S.f.mh){toast(t('fill'));return}S.meets.push({t:S.f.mt.trim(),d:S.f.md,h:S.f.mh});S.f.mt=S.f.md=S.f.mh='';toast(t('ok2'))},
+mkclub:()=>{const n=(S.f.cn||'').trim();if(!n){toast(t('fill'));return}S.clubs.unshift({n,d:(S.f.cd||'').trim()||n,ty:S.f.ct||'c',ow:nm(),mem:[nm()]});S.f.cn=S.f.cd='';toast(t('ok2'))},
+joinclub:v=>{const c=S.clubs[+v],i=c.mem.indexOf(nm());i<0?c.mem.push(nm()):c.mem.splice(i,1)},delclub:v=>S.clubs.splice(+v,1),
 apply:v=>{S.applied[v]=true;toast(t('apd'))},offer:v=>{S.offered[v]=true;toast(t('ofd'))},
-mkgig:()=>{const h=(S.f.gt||'').trim(),b=parseInt(S.f.gb,10);if(!h||!(b>=0)){toast(t('fill'));return}FB.add('gigs',{h,u:nm(),p:b}).catch(fe);S.offered={};S.f.gt=S.f.gb='';toast(t('ok2'))},
-book:()=>{if(!S.f.rd||!(S.f.rw||'').trim()){toast(t('fill'));return}FB.add('appts',{u:nm(),v:+(S.f.sv||0),d:S.f.rd,s:S.f.rs||SLOTS[0],w:S.f.rw.trim(),st:'p'}).catch(fe);S.f.rd=S.f.rw='';toast(t('bk'))},
-rvok:v=>{FB.upd('appts',S.appts[+v].id,{st:'a'}).catch(fe)},rvno:v=>{FB.upd('appts',S.appts[+v].id,{st:'r'}).catch(fe)}
+mkgig:()=>{const h=(S.f.gt||'').trim(),b=parseInt(S.f.gb,10);if(!h||!(b>=0)){toast(t('fill'));return}S.gigs.unshift({h,u:nm(),me:true,p:b});S.offered={};S.f.gt=S.f.gb='';toast(t('ok2'))},
+book:()=>{if(!S.f.rd||!(S.f.rw||'').trim()){toast(t('fill'));return}S.appts.unshift({u:nm(),v:+(S.f.sv||0),d:S.f.rd,s:S.f.rs||SLOTS[0],w:S.f.rw.trim(),st:'p'});S.f.rd=S.f.rw='';toast(t('bk'))},
+rvok:v=>S.appts[+v].st='a',rvno:v=>S.appts[+v].st='r'
 };
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.tagName==='SELECT'||b.closest('.call'))return;A[b.dataset.a](b.dataset.v,b);render()});
 document.addEventListener('change',e=>{const el=e.target;
   if(el.id==='lang'){S.lang=el.value;save();render()}
   else if(el.id==='p_col'){S.th.ac=el.value;save();render()}
   else if(el.id==='pav'&&el.files[0]){resizeAv(el.files[0])}
-  else if(el.id==='fl'&&el.files[0]){const f=el.files[0];if(f.type.startsWith('image'))imgData(f,s=>post({k:'img',src:s,name:f.name}));else toast(t('fe4'))}
-  else if(el.id==='dp'&&el.files[0]){const f=el.files[0];FB.add('docs',{n:f.name,sz:f.size}).catch(fe);toast(t('ok2'))}});
+  else if(el.id==='fl'&&el.files[0]){const f=el.files[0],k=f.type.startsWith('image')?'img':f.type.startsWith('video')?'vid':'file';post({k,src:URL.createObjectURL(f),name:f.name,sz:f.size});render()}
+  else if(el.id==='dp'&&el.files[0]){const f=el.files[0];S.docs.unshift({n:f.name,sz:f.size});toast(t('ok2'));render()}});
 document.addEventListener('input',e=>{const el=e.target;if(el.id&&el.type!=='file'){S.f[el.id]=el.type==='checkbox'?el.checked:el.value}});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='msg'){A.send();render()}else if(!S.user&&e.target.tagName==='INPUT'){A.auth();render()}});
-/* ---------- Synchronisation Firestore ---------- */
-const blank=()=>({anns:[],msgs:[],clubs:[],meets:[],docs:[],gigs:[],appts:[]});let RAW=blank();
-const ME=()=>S.user&&S.user.uid,fe=e=>{console.warn(e);toast(t('fe0'))};
-const imgData=(f,cb)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.7))};im.src=r.result};r.readAsDataURL(f)};
-function derive(){const u=S.user;S.groups.forEach(g=>g.msgs=[]);if(!u){S.anns=[];S.clubs=[];S.meets=[];S.docs=[];S.gigs=[];S.appts=[];return}
- const me=u.uid,N=u.name,mine=(id,n)=>id===me?N:n,by=(a,b)=>b.ts-a.ts;
- S.anns=RAW.anns;S.meets=RAW.meets.slice().sort((a,b)=>a.d+a.h<b.d+b.h?-1:1);S.docs=RAW.docs.slice().sort(by);
- S.clubs=RAW.clubs.slice().sort(by).map(c=>({id:c.id,n:c.n,d:c.d,ty:c.ty,ow:c.owU===me?N:'',mem:(c.memU||[]).map(x=>x===me?N:x)}));
- S.gigs=RAW.gigs.slice().sort(by).map(g=>({id:g.id,h:g.h,p:g.p,me:g.uid===me,u:g.u}));
- S.appts=RAW.appts.slice().sort(by).map(a=>Object.assign({},a,{u:mine(a.uid,a.u)}));
- RAW.msgs.slice().reverse().forEach(m=>{const g=S.groups[m.g];if(g)g.msgs.push(Object.assign({},m,{u:mine(m.uid,m.u)}))})}
-if(window.FB)FB.init({user:u=>{const first=u&&!S.user;S.user=u;if(!u){RAW=blank();S.f={}}if(first||!u)S.view='dash';save();derive();render()},data:(k,l)=>{RAW[k]=l;derive();render()}});
-addEventListener('offline',()=>toast(t('off')));addEventListener('online',()=>toast(t('on')));
-
 render();
 const tick=()=>{const d=new Date();$('#clk').textContent=d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')};tick();setInterval(tick,3e4);
 const fit=()=>document.querySelector('.dev').style.setProperty('--k',Math.min(1,(innerHeight-56)/870,(innerWidth-48)/430));fit();addEventListener('resize',fit);
